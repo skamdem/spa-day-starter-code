@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1 th:unless="${name}" th:text="'Welcome User'"></h1>
+<th:block th:if="${name}">
+    <h1 th:text="'Welcome '+${name}"></h1>
+</th:block>
+<h2 style="text-align:center"><a th:href="@{/}">Click here to return to service selection template</a></h2>
+<header th:replace="fragments :: header"></header>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Date</th>
+        <th>Editing</th>
+    </tr>
+    </thead>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.date}"></td>
+        <td>
+            <a th:href="@{/user/edit/{id}(id=${user.id})}">Edit</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
